@@ -1,0 +1,130 @@
+/**********************************************************************/
+/*  PROYECTO AMBLIOPÍA              */
+/*  ALEJANDRO SÁNCHEZ MÁRQUEZ                  */
+
+/**********************************************************************/
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fuente-primaria);
+  /*outline: 1px solid red;*/
+}
+
+:root {
+  --color-fondo: hsl(0, 5%, 95%);
+
+  --color-primario: hsl(231, 82%, 6%);
+  --color-primario-claro: hsl(230, 5%, 49%);
+  --color-primario-muy-claro: hsl(0, 0%, 92%);
+
+  --color-fondo-tarjeta: hsl(0,0%,100%);
+  
+  --color-boton-pulsado: hsl(240, 3%, 81%);
+
+
+  --fuente-primaria: 'Fredoka One','Gill Sans', 'Gill Sans MT',sans-serif;
+
+  --ancho-tarjeta: 300px;
+  --altura-tarjeta: 200px;
+} 
+
+
+/**********************************************************************/
+
+body {
+  display: grid;
+  grid-template-columns: 25% 75%;
+
+  width: clamp(600px, 100vw, 100%);
+  height: 100vh;
+} 
+
+/**********************************************************************/
+
+
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: var( --color-fondo);
+    background-color: var(--color-primario);
+    width: clamp(50%, 100vw, 100%);
+    gap: 5em;
+    padding: 10%;
+
+
+}
+
+.boton_min{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 3em;
+
+    cursor: pointer;
+}
+
+.boton_min:hover{
+    background-color: var(--color-boton-pulsado);
+}
+
+.menu_cuerpo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1em;
+}
+
+.menu_botones{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 1em;
+    padding: 1.5em;
+    background-color: white;
+}
+
+.menu_boton{
+    display: flex;
+    justify-content: center;
+    outline: 2px solid black;
+
+    cursor: pointer;
+
+    padding: 0.5em;
+}
+
+.menu_boton:hover{
+    background-color: var(--color-boton-pulsado);
+}
+ 
+/**********************************************************************/
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+
+  background-color: white; 
+}
+
+
+
+/**********************************************************************/
+
+.minimizado{
+    
+    transition: transform 1s;
+    transform: translate(-250px,0px);
+    transform-style: flat;
+}
