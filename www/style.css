@@ -27,8 +27,9 @@
 
   --fuente-primaria: 'Fredoka One','Gill Sans', 'Gill Sans MT',sans-serif;
 
-  --ancho-tarjeta: 300px;
-  --altura-tarjeta: 200px;
+  /* Entre ambas anchures deben sumar 100% */
+  --ancho-menu: 25%;
+  --ancho-panel: 75%;
 } 
 
 
@@ -36,9 +37,8 @@
 
 body {
   display: grid;
-  grid-template-columns: 25% 75%;
-
-  width: clamp(600px, 100vw, 100%);
+  grid-template-columns: var(--ancho-menu) var(--ancho-panel);
+  width: clamp(60%, 100vw, 100%);
   height: 100vh;
 } 
 
@@ -47,26 +47,37 @@ body {
 
 
 .menu {
+    position: fixed;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
     color: var( --color-fondo);
     background-color: var(--color-primario);
-    width: clamp(50%, 100vw, 100%);
-    gap: 5em;
-    padding: 10%;
 
+    width: var(--ancho-menu);
+    height: 100%;
+
+    padding: 3.5%;
+
+    transition: transform 1.5s;
 
 }
 
 .boton_min{
+    position: absolute;
+    left: 110%;
+    top: 5%;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 25%;
     height: 3em;
 
+    font-size: 24px;
+    color: black;
     cursor: pointer;
 }
 
@@ -108,14 +119,23 @@ body {
  
 /**********************************************************************/
 
-.panel {
+.panel {  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1em;
 
+
+
+
+  background-color: gray;
+
+  grid-column: 2 / span 2;
+
+
   background-color: white; 
+  
 }
 
 
@@ -123,8 +143,24 @@ body {
 /**********************************************************************/
 
 .minimizado{
+    transform: translate(-100%,0px);
+    transform-style: flat; 
     
-    transition: transform 1s;
-    transform: translate(-250px,0px);
-    transform-style: flat;
+}
+
+.minimizado_panel{
+
+  grid-column: 1 / span 2;
+}
+
+/**********************************************************************/
+
+
+.bola{
+
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border-radius: 50%;
+
 }
