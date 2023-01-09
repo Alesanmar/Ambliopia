@@ -59,7 +59,7 @@ body {
     width: var(--ancho-menu);
     height: 100%;
 
-    padding: 3.5%;
+    padding: 3%;
 
     transition: transform 1.5s;
 
@@ -125,14 +125,8 @@ body {
   justify-content: center;
   align-items: center;
   gap: 1em;
-
-
-
-
-  background-color: gray;
-
+  
   grid-column: 2 / span 2;
-
 
   background-color: white; 
   
@@ -149,18 +143,179 @@ body {
 }
 
 .minimizado_panel{
-
   grid-column: 1 / span 2;
+
 }
+
 
 /**********************************************************************/
 
-
-.bola{
-
+.pausa1{
+  position: fixed;
+  left: 40%;
+  animation: move 25s steps(1,end) forwards;
   width: 100px;
   height: 100px;
-  background-color: red;
+  background-color: blue;
+  
   border-radius: 50%;
-
+  animation-play-state: running;
 }
+
+.bola1{
+  position: fixed;
+  left: 40%;
+  animation: move 27s steps(1,end) forwards;
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  border-radius: 50%;
+  animation-play-state: paused;
+}
+
+ @keyframes move{
+  0%{
+      top: 15%;
+      width: 200px;
+      height: 200px;
+  }
+  8.3%{
+    top: 80%;
+    left: 80%;
+    width: 50px;
+    height: 50px;
+  }
+  12.45%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  16.6%{
+    top: 25%;
+    left: 75%;
+    width: 50px;
+    height: 50px;
+  }
+  20.8%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  25%{
+    top: 80%;
+    left: 70%;
+    width: 50px;
+    height: 50px;
+  }
+  29.15%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  33.3%{
+    top: 20%;
+    left: 75%;
+    width: 50px;
+    height: 50px;
+  }
+  37.45%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  41.6%{
+    top: 80%;
+    left: 80%;
+    width: 50px;
+    height: 50px;
+  }
+  45.8%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+
+  50%{
+    top: 80%;
+    left: 90%;
+    width: 50px;
+    height: 50px;
+  }
+  54.15%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  58.3%{
+    top: 80%;
+    left: 70%;
+    width: 50px;
+    height: 50px;
+  }
+  62.45%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  66.6%{
+    top: 20%;
+    left: 85%;
+    width: 50px;
+    height: 50px;
+  }
+  70.8%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  75%{
+    top: 80%;
+    left: 70%;
+    width: 50px;
+    height: 50px;
+  }
+  79.15%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  83.3%{
+    top: 70%;
+    left: 90%;
+    width: 50px;
+    height: 50px;
+  }
+  87.45%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  91.6%{
+    top: 80%;
+    left: 80%;
+    width: 50px;
+    height: 50px;
+  }
+  95.8%{
+    top: 15%;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+  }
+  100%{
+    top: 25%;
+    left: 85%;
+    width: 50px;
+    height: 50px;
+  }
+ }
