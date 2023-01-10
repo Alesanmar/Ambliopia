@@ -30,6 +30,7 @@
   /* Entre ambas anchures deben sumar 100% */
   --ancho-menu: 25%;
   --ancho-panel: 75%;
+
 } 
 
 
@@ -48,7 +49,7 @@ body {
 
 .menu {
     position: fixed;
-
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,24 +66,43 @@ body {
 
 }
 
-.boton_min{
-    position: absolute;
-    left: 110%;
-    top: 5%;
+.boton{
+  position: absolute;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25%;
-    height: 3em;
 
-    font-size: 24px;
-    color: black;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 2em;
+
+  font-size: 24px;
+  color: black;
+  cursor: pointer;
 }
 
-.boton_min:hover{
+.boton_min{
+  left: 110%;
+  top: 5%;
+}
+
+.boton:hover{
     background-color: var(--color-boton-pulsado);
+}
+
+.boton_play{
+  left: 110%;
+  top: 10%;
+}
+
+.boton_pausa{
+  left: 110%;
+  top: 15%;
+}
+
+.boton_reinicio{
+  left: 110%;
+  top: 20%;
 }
 
 .menu_cuerpo{
@@ -90,7 +110,14 @@ body {
     flex-direction: column;
     align-items: center;
 
-    gap: 1em;
+    gap: 3em;
+}
+
+.cabecera{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
 }
 
 .menu_botones{
@@ -150,172 +177,141 @@ body {
 
 /**********************************************************************/
 
-.pausa1{
-  position: fixed;
+.bola1{
+  position: absolute;
   left: 40%;
-  animation: move 25s steps(1,end) forwards;
+  
   width: 100px;
   height: 100px;
   background-color: blue;
-  
+  background:radial-gradient(at 30% 30%,#0000,#000a) blue;
   border-radius: 50%;
-  animation-play-state: running;
+
+  animation: move 27s steps(1,end) forwards;
 }
 
-.bola1{
-  position: fixed;
-  left: 40%;
-  animation: move 27s steps(1,end) forwards;
-  width: 100px;
-  height: 100px;
-  background-color: blue;
+
+.bola2{
+  
+  position: absolute;
+
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  background:radial-gradient(at 30% 30%,#0000,#000a) red;
   border-radius: 50%;
-  animation-play-state: paused;
+
+  /*animation: frame1 0.75s cubic-bezier(.04,.77,.5,.93) forwards, frame2 0.75s linear 0.75s forwards,
+  frame3 1.25s cubic-bezier(.23,.58,.76,.81) 1.5s forwards,frame4 0.75s cubic-bezier(.05,.86,.55,.9) 3s forwards,
+  frame5 1s cubic-bezier(.23,.58,.76,.81) 3.75s forwards, frame6 1s cubic-bezier(.23,.58,.76,.81) 4.75s forwards,
+  frame7 1s cubic-bezier(.23,.58,.76,.81) 5.75s forwards; */
+  animation: x 2s linear forwards,
+  y 2s forwards cubic-bezier(0.8,-667,0.8,667),x2 2s 2s linear  forwards,
+  y2 2s 2s forwards  cubic-bezier(0.6,-667,0.8,667),x3 2s 4s linear  forwards,
+  y3 2s 4s forwards  cubic-bezier(0.6,700,0.7,-700),x4 2s 6s linear  forwards,
+  y4 2s 6s forwards  cubic-bezier(0.5,-800,0.8,-800),x5 2s 8s linear  forwards,
+  y5 2s 8s forwards  cubic-bezier(0.6,800,0.7,-800),x6 2s 10s linear  forwards,
+  y6 2s 10s forwards  cubic-bezier(0.8,-500,0.7,500),x7 2s 12s linear  forwards,
+  y7 2s 12s forwards  cubic-bezier(0.4,500,0.8,500),x8 2s 14s linear  forwards,
+  y8 2s 14s forwards  cubic-bezier(0.8,700,0.7,-700),x9 2s 16s linear  forwards,
+  y9 2s 16s forwards  cubic-bezier(0.5,900,0.5,-900),x10 2s 18s linear  forwards,
+  y10 2s 18s forwards  cubic-bezier(0.4,-900,0.8,-900),x11 2s 20s linear  forwards,
+  y11 2s 20s forwards  cubic-bezier(0.5,-600,0.5,600),x12 2s 22s linear  forwards,
+  y12 2s 22s forwards  cubic-bezier(0.5,600,0.5,-600);
+
+  left:80%;
+  top: 20%;
+}
+
+@keyframes x { to { left:40%; } }
+@keyframes y { to { top:20.1%; } }
+
+@keyframes x2 {from{left:40%;} to { left:20%; } }
+@keyframes y2 {from{top:20.1%;} to { top:20.2%; } }
+
+@keyframes x3 {from{left:20%;} to { left:80%; } }
+@keyframes y3 {from{top:20.2%;} to { top:20.3%; } }
+
+@keyframes x4 {from{left:80%;} to { left:30%; } }
+@keyframes y4 {from{top:20.2%;} to { top:20.1%; } }
+
+@keyframes x5 {from{left:30%;} to { left:85%; } }
+@keyframes y5 {from{top:20.1%;} to { top:20.15%; } }
+
+@keyframes x6 {from{left:85%;} to { left:25%; } }
+@keyframes y6 {from{top:20.15%;} to { top:20.05%; } }
+
+@keyframes x7 {from{left:25%;} to { left:65%; } }
+@keyframes y7 {from{top:20.05%;} to { top:20.15%; } }
+
+@keyframes x8 {from{left:65%;} to { left:15%; } }
+@keyframes y8 {from{top:20.15%;} to { top:20.25%; } }
+
+@keyframes x9 {from{left:15%;} to { left:90%; } }
+@keyframes y9 {from{top:20.25%;} to { top:20.2%; } }
+
+@keyframes x10 {from{left:90%;} to { left:40%; } }
+@keyframes y10 {from{top:20.2%;} to { top:20.1%; } }
+
+@keyframes x11 {from{left:40%;} to { left:60%; } }
+@keyframes y11 {from{top:20.1%;} to { top:20.2%; } }
+
+@keyframes x12 {from{left:60%;} to { left:50%; } }
+@keyframes y12 {from{top:20.2%;} to { top:20.3%; } }
+
+/* Animaciones */
+/*
+@keyframes frame1 {from{width:25px; height:25px; top:0%; left: 70%;}to {width:50px; height:50px; top:50%; left: 50%;}}
+
+@keyframes frame2 {from{width:50px; height:50px; top:50%; left: 50%;}to {width:50px; height:50px; top:20%; left: 80%;}}
+
+@keyframes frame3 {from{width:50px; height:50px; top:20%; left: 80%;}to {width:50px; height:50px; top:45%; left: 70%;}}
+
+@keyframes frame4 {from{width:50px; height:50px; top:45%; left: 70%;}to {width:50px; height:50px; top:20%; left: 55%;}}
+
+@keyframes frame5 {from{width:50px; height:50px; top:20%; left: 55%;}to {width:50px; height:50px; top:90%; left: 90%;}}
+
+@keyframes frame6 {from{width:50px; height:50px; top:90%; left: 90%;}to {width:50px; height:50px; top:50%; left: 50%;}}
+
+@keyframes frame7 {from{width:50px; height:50px; top:50%; left: 50%;}to {width:50px; height:50px; top:50%; left: 90%;}}
+*/  
+
+
+
+@keyframes move1 {
+  from { transform: translate3d(calc(1px * var(--p0x)), calc(1px * var(--p0y)), 0px); }
+  to { transform: translate3d(calc(1px * var(--q1x)), calc(1px * var(--q1y)), 0px); }
+}
+@keyframes move2 {
+  to { transform: translate3d(calc(1px * var(--q2x)), calc(1px * var(--q2y)), 0px); }
+}
+@keyframes move3 {
+  to { transform: translate3d(calc(1px * var(--p3x)), calc(1px * var(--p3y)), 0px); }
 }
 
  @keyframes move{
-  0%{
-      top: 15%;
-      width: 200px;
-      height: 200px;
-  }
-  8.3%{
-    top: 80%;
-    left: 80%;
-    width: 50px;
-    height: 50px;
-  }
-  12.45%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  16.6%{
-    top: 25%;
-    left: 75%;
-    width: 50px;
-    height: 50px;
-  }
-  20.8%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  25%{
-    top: 80%;
-    left: 70%;
-    width: 50px;
-    height: 50px;
-  }
-  29.15%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  33.3%{
-    top: 20%;
-    left: 75%;
-    width: 50px;
-    height: 50px;
-  }
-  37.45%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  41.6%{
-    top: 80%;
-    left: 80%;
-    width: 50px;
-    height: 50px;
-  }
-  45.8%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-
-  50%{
-    top: 80%;
-    left: 90%;
-    width: 50px;
-    height: 50px;
-  }
-  54.15%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  58.3%{
-    top: 80%;
-    left: 70%;
-    width: 50px;
-    height: 50px;
-  }
-  62.45%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  66.6%{
-    top: 20%;
-    left: 85%;
-    width: 50px;
-    height: 50px;
-  }
-  70.8%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  75%{
-    top: 80%;
-    left: 70%;
-    width: 50px;
-    height: 50px;
-  }
-  79.15%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  83.3%{
-    top: 70%;
-    left: 90%;
-    width: 50px;
-    height: 50px;
-  }
-  87.45%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  91.6%{
-    top: 80%;
-    left: 80%;
-    width: 50px;
-    height: 50px;
-  }
-  95.8%{
-    top: 15%;
-    left: 40%;
-    width: 200px;
-    height: 200px;
-  }
-  100%{
-    top: 25%;
-    left: 85%;
-    width: 50px;
-    height: 50px;
-  }
+  0%{top: 15%; width: 200px; height: 200px;}
+  8.3%{top: 80%; left: 80%; width: 50px; height: 50px;}
+  12.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  16.6%{top: 25%; left: 75%; width: 50px; height: 50px;}
+  20.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  25%{top: 80%; left: 70%; width: 50px; height: 50px;}
+  29.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  33.3%{top: 20%; left: 75%; width: 50px; height: 50px;}
+  37.45%{top: 15%; left: 40%; width: 200px;height: 200px;}
+  41.6%{top: 80%; left: 80%; width: 50px; height: 50px;}
+  45.8%{top: 15%; left: 40%; width: 200px;height: 200px;}
+  50%{top: 80%; left: 90%; width: 50px; height: 50px;}
+  54.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  58.3%{top: 80%; left: 70%; width: 50px; height: 50px;}
+  62.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  66.6%{top: 20%;left: 85%; width: 50px; height: 50px;}
+  70.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  75%{top: 80%; left: 70%; width: 50px; height: 50px;}
+  79.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  83.3%{top: 70%; left: 90%; width: 50px; height: 50px;}
+  87.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  91.6%{top: 80%; left: 80%; width: 50px; height: 50px;}
+  95.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  100%{top: 25%; left: 85%; width: 50px;height: 50px;}
  }
