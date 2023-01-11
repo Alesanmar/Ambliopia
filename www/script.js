@@ -120,9 +120,11 @@ function seleccionar(clase){
 // Función encargada de generar las instrucciones para el ejercicio
 
 function insertarInstruccion(clase){
-    if(instrucciones.children.length != 0){
+
         if(clase == "bola1"){
+            if(instrucciones.children.length != 0){
             instrucciones.removeChild(document.getElementById("instruccion"));
+            }
             var instruccion = document.createElement('p');
             instruccion.id = "instruccion";
             instruccion.classList = claseInstruccion;
@@ -131,7 +133,9 @@ function insertarInstruccion(clase){
         }
 
         if(clase == "bola2"){
-            instrucciones.removeChild(document.getElementById("instruccion"));
+            if(instrucciones.children.length != 0){
+                instrucciones.removeChild(document.getElementById("instruccion"));
+                }
             var instruccion = document.createElement('p');
             instruccion.id = "instruccion";
             instruccion.classList = claseInstruccion;
@@ -140,38 +144,13 @@ function insertarInstruccion(clase){
         }
 
         if(clase == "bola3"){
-            instrucciones.removeChild(document.getElementById("instruccion"));
+            if(instrucciones.children.length != 0){
+                instrucciones.removeChild(document.getElementById("instruccion"));
+                }
             var instruccion = document.createElement('p');
             instruccion.id = "instruccion";
             instruccion.classList = claseInstruccion;
             instruccion.textContent = "Situa tu dedo frente tu nariz a 15cm. Concentrate en la bola y luego en el dedo, la bola y luego el dedo ... (parpadea a menudo)";
             instrucciones.insertAdjacentElement("afterbegin",instruccion)
         }
-    }else{
-        if(clase == "bola1"){
-            var instruccion = document.createElement('p');
-            instruccion.id = "instruccion";
-            instruccion.classList = claseInstruccion;
-            instruccion.textContent = "Localiza la bola (parpadea a menudo)"
-            instrucciones.insertAdjacentElement("afterbegin",instruccion)
-        }
-
-        if(clase == "bola2"){
-            var instruccion = document.createElement('p');
-            instruccion.id = "instruccion";
-            instruccion.classList = claseInstruccion;
-            instruccion.textContent = "Sigue la bola (parpadea a menudo)"
-            instrucciones.insertAdjacentElement("afterbegin",instruccion)
-        }
-
-        if(clase == "bola3"){
-            var instruccion = document.createElement('p');
-            instruccion.id = "instruccion";
-            instruccion.classList = claseInstruccion;
-            instruccion.textContent = "Situa tu dedo frente tu nariz a 15cm.  Concentrate en la bola y luego en el dedo, la bola y luego el dedo ... (parpadea a menudo)";
-            instrucciones.insertAdjacentElement("afterbegin",instruccion)
-        }
     }
-
-}
-
