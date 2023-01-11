@@ -1,23 +1,28 @@
-
-
 const menu = document.getElementById("menuLateral");
 const panel = document.getElementById("panelPrincipal");
+const instrucciones = document.getElementById("panelInstrucciones");
 
 // Botón para minimizar el menu lateral
 
 const botonMin = document.getElementById("min");
 botonMin.addEventListener("click", (e) => minimizar());
 
+// Botón para iniciar animación
+
 const botonPlay = document.getElementById("play");
 botonPlay.addEventListener("click", (e) => play());
+
+// Botón para pausar animación
 
 const botonPause = document.getElementById("pause");
 botonPause.addEventListener("click", (e) => pause());
 
+// Botón para reiniciar animación
+
 const botonReboot = document.getElementById("reboot");
 botonReboot.addEventListener("click", (e) => reboot());
 
-//Opcion activa
+//Opción activa
 
 var activo = null;
 
@@ -26,13 +31,11 @@ var activo = null;
 const boton1 = document.getElementById("boton1");
 const boton2 = document.getElementById("boton2");
 const boton3 = document.getElementById("boton3");
-const boton4 = document.getElementById("boton4");
 
 
 boton1.addEventListener("click", (e) => seleccionar("bola1"));
 boton2.addEventListener("click", (e) => seleccionar("bola2"));
 boton3.addEventListener("click", (e) => seleccionar("bola3"));
-boton4.addEventListener("click", (e) => seleccionar("bola4"));
 
 const claseMenu = "menu";
 const clasePanel = "panel";
@@ -40,9 +43,10 @@ const clasePanel = "panel";
 const claseMinimizar = "minimizado menu";
 const claseMinimizarPanel = "minimizado_panel panel"
 
-function comienzo(){
-    console.log(activo);
-}
+const claseInstruccion = "texto_instruccion";
+
+
+// funcion para minimizar el menu lateral y ampliar el panel a pantalla completa
 
 function minimizar(){
     if(menu.classList == claseMenu){
@@ -59,21 +63,21 @@ function minimizar(){
 
 
 
-// crear funcion de play (boton)
+// funcion de play (boton)
 
 function play(){
     var bola = document.getElementById("bola");
     bola.style.animationPlayState = "running";
 }
 
-// crear funcion de pause (boton)
+// funcion de pause (boton)
 
 function pause(){
     var bola = document.getElementById("bola");
     bola.style.animationPlayState = "paused";
 }
 
-// crear funcion de reinicio (boton que eliminar e insertar bola de nuevo)
+// funcion de reinicio (boton que eliminar e insertar bola de nuevo)
 function reboot(){
     panel.removeChild(document.getElementById("bola"));
     var bola = document.createElement('div');
@@ -86,7 +90,6 @@ function reboot(){
 // menu lateral.
 
 function seleccionar(clase){
-
     if(activo == clase){
         console.log("ya está activo")
     }
@@ -97,6 +100,8 @@ function seleccionar(clase){
         bola.id = "bola";
         bola.classList = activo;
         panel.insertAdjacentElement("afterbegin",bola);
+        pause();
+        insertarInstruccion(clase);
     }
 
     if(activo != clase){
@@ -107,7 +112,66 @@ function seleccionar(clase){
         bola.id = "bola";
         bola.classList = activo;
         panel.insertAdjacentElement("afterbegin",bola);
+        pause();
+        insertarInstruccion(clase);
     }
 }
 
-comienzo();
+// Función encargada de generar las instrucciones para el ejercicio
+
+function insertarInstruccion(clase){
+    if(instrucciones.children.length != 0){
+        if(clase == "bola1"){
+            instrucciones.removeChild(document.getElementById("instruccion"));
+            var instruccion = document.createElement('p');
+            instruccion.id = "instruccion";
+            instruccion.classList = claseInstruccion;
+            instruccion.textContent = "Localiza la bola (parpadea a menudo)"
+            instrucciones.insertAdjacentElement("afterbegin",instruccion)
+        }
+
+        if(clase == "bola2"){
+            instrucciones.removeChild(document.getElementById("instruccion"));
+            var instruccion = document.createElement('p');
+            instruccion.id = "instruccion";
+            instruccion.classList = claseInstruccion;
+            instruccion.textContent = "Sigue la bola (parpadea a menudo)"
+            instrucciones.insertAdjacentElement("afterbegin",instruccion)
+        }
+
+        if(clase == "bola3"){
+            instrucciones.removeChild(document.getElementById("instruccion"));
+            var instruccion = document.createElement('p');
+            instruccion.id = "instruccion";
+            instruccion.classList = claseInstruccion;
+            instruccion.textContent = "Situa tu dedo frente tu nariz a 15cm. Concentrate en la bola y luego en el dedo, la bola y luego el dedo ... (parpadea a menudo)";
+            instrucciones.insertAdjacentElement("afterbegin",instruccion)
+        }
+    }else{
+        if(clase == "bola1"){
+            var instruccion = document.createElement('p');
+            instruccion.id = "instruccion";
+            instruccion.classList = claseInstruccion;
+            instruccion.textContent = "Localiza la bola (parpadea a menudo)"
+            instrucciones.insertAdjacentElement("afterbegin",instruccion)
+        }
+
+        if(clase == "bola2"){
+            var instruccion = document.createElement('p');
+            instruccion.id = "instruccion";
+            instruccion.classList = claseInstruccion;
+            instruccion.textContent = "Sigue la bola (parpadea a menudo)"
+            instrucciones.insertAdjacentElement("afterbegin",instruccion)
+        }
+
+        if(clase == "bola3"){
+            var instruccion = document.createElement('p');
+            instruccion.id = "instruccion";
+            instruccion.classList = claseInstruccion;
+            instruccion.textContent = "Situa tu dedo frente tu nariz a 15cm.  Concentrate en la bola y luego en el dedo, la bola y luego el dedo ... (parpadea a menudo)";
+            instrucciones.insertAdjacentElement("afterbegin",instruccion)
+        }
+    }
+
+}
+

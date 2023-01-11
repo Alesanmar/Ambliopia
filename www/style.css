@@ -23,13 +23,15 @@
   --color-fondo-tarjeta: hsl(0,0%,100%);
   
   --color-boton-pulsado: hsl(240, 3%, 81%);
-
+  --color-iconos: hsl(0,0%,0%);
 
   --fuente-primaria: 'Fredoka One','Gill Sans', 'Gill Sans MT',sans-serif;
 
   /* Entre ambas anchures deben sumar 100% */
   --ancho-menu: 25%;
   --ancho-panel: 75%;
+
+  --espacio-menu: 5em;
 
 } 
 
@@ -39,46 +41,50 @@
 body {
   display: grid;
   grid-template-columns: var(--ancho-menu) var(--ancho-panel);
-  width: clamp(60%, 100vw, 100%);
   height: 100vh;
+  background-color: var(--color-fondo);
 } 
 
 /**********************************************************************/
 
-
-
 .menu {
-    position: fixed;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: fixed;
+  z-index: 1;
 
-    color: var( --color-fondo);
-    background-color: var(--color-primario);
 
-    width: var(--ancho-menu);
-    height: 100%;
+  display: flex;
+  flex-direction: column;
 
-    padding: 3%;
+  width: clamp(200px,var(--ancho-menu),var(--ancho-menu));
+  height: 100%;
 
-    transition: transform 1.5s;
+  color: var( --color-fondo);
+  background-color: var(--color-primario);
 
+  padding: 3%;
+
+  transition: transform 1.5s;
 }
+
+/*********************** Botones laterales ********************************/
 
 .boton{
   position: absolute;
 
-
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25%;
+
+  width: 2em;
   height: 2em;
 
   font-size: 24px;
-  color: black;
+  color: var(--color-iconos);
   cursor: pointer;
+}
+
+.boton:hover{
+  background-color: var(--color-boton-pulsado);
 }
 
 .boton_min{
@@ -86,31 +92,30 @@ body {
   top: 5%;
 }
 
-.boton:hover{
-    background-color: var(--color-boton-pulsado);
-}
-
 .boton_play{
   left: 110%;
-  top: 10%;
+  top: 10.5%;
 }
 
 .boton_pausa{
   left: 110%;
-  top: 15%;
+  top: 16%;
 }
 
 .boton_reinicio{
   left: 110%;
-  top: 20%;
+  top: 21.5%;
 }
 
-.menu_cuerpo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/************************* Menu lateral **************************/
 
-    gap: 3em;
+.menu_cuerpo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  gap: var(--espacio-menu);
 }
 
 .cabecera{
@@ -121,28 +126,51 @@ body {
 }
 
 .menu_botones{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    gap: 1em;
-    padding: 1.5em;
-    background-color: white;
+  gap: 1em;
+  padding: 1.2em;
+  background-color: var(--color-primario-muy-claro);
+  border-radius: 15%;
 }
 
 .menu_boton{
-    display: flex;
-    justify-content: center;
-    outline: 2px solid black;
+  display: flex;
+  justify-content: center;
+  outline: 2px solid black;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    padding: 0.5em;
+  padding: 0.5em;
 }
 
 .menu_boton:hover{
-    background-color: var(--color-boton-pulsado);
+  background-color: var(--color-boton-pulsado);
 }
+
+.instrucciones{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  outline: 5px solid var(--color-primario-claro);
+  
+  border-radius: 15%;
+  padding: 5%;
+
+  width: 75%;
+  height: 33%;
+
+  background-color: var(--color-primario-muy-claro);
+}
+
+.texto_instruccion{ 
+  color: black;
+}
+
  
 /**********************************************************************/
 
@@ -151,12 +179,16 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1em;
-  
-  grid-column: 2 / span 2;
 
-  background-color: white; 
-  
+  gap: 1em;
+  grid-column: 2 / 2;
+
+  background-color: var(--color-fondo); 
+}
+
+.panel_ejercicio4{
+  background-color: var(--color-fondo-ejercicio4);
+  transition: background-color 2s linear;
 }
 
 
@@ -164,14 +196,13 @@ body {
 /**********************************************************************/
 
 .minimizado{
-    transform: translate(-100%,0px);
-    transform-style: flat; 
+  transform: translate(-100%,0px);
+  transform-style: flat; 
     
 }
 
 .minimizado_panel{
   grid-column: 1 / span 2;
-
 }
 
 
@@ -183,28 +214,24 @@ body {
   
   width: 100px;
   height: 100px;
-  background-color: blue;
+
   background:radial-gradient(at 30% 30%,#0000,#000a) blue;
   border-radius: 50%;
 
-  animation: move 27s steps(1,end) forwards;
+  animation: ejercicio1 27s steps(1,end) forwards;
 }
 
 
 .bola2{
-  
   position: absolute;
+  left:80%;
+  top: 20%;
 
   width: 50px;
   height: 50px;
-  background-color: red;
   background:radial-gradient(at 30% 30%,#0000,#000a) red;
   border-radius: 50%;
 
-  /*animation: frame1 0.75s cubic-bezier(.04,.77,.5,.93) forwards, frame2 0.75s linear 0.75s forwards,
-  frame3 1.25s cubic-bezier(.23,.58,.76,.81) 1.5s forwards,frame4 0.75s cubic-bezier(.05,.86,.55,.9) 3s forwards,
-  frame5 1s cubic-bezier(.23,.58,.76,.81) 3.75s forwards, frame6 1s cubic-bezier(.23,.58,.76,.81) 4.75s forwards,
-  frame7 1s cubic-bezier(.23,.58,.76,.81) 5.75s forwards; */
   animation: x 2s linear forwards,
   y 2s forwards cubic-bezier(0.8,-667,0.8,667),x2 2s 2s linear  forwards,
   y2 2s 2s forwards  cubic-bezier(0.6,-667,0.8,667),x3 2s 4s linear  forwards,
@@ -218,10 +245,54 @@ body {
   y10 2s 18s forwards  cubic-bezier(0.4,-900,0.8,-900),x11 2s 20s linear  forwards,
   y11 2s 20s forwards  cubic-bezier(0.5,-600,0.5,600),x12 2s 22s linear  forwards,
   y12 2s 22s forwards  cubic-bezier(0.5,600,0.5,-600);
-
-  left:80%;
-  top: 20%;
 }
+
+.bola3{
+  position: absolute;
+  left:45%;
+  top: 35%;
+
+  width: 150px;
+  height: 150px;
+  background:radial-gradient(at 30% 30%,#0000,#000a) red;
+  border-radius: 50%;
+
+  animation: ejercicio3 22s steps(1,end);
+}
+
+
+/* Animaciones */
+
+/* Ejercicio 1 */
+
+@keyframes ejercicio1{
+  0%{top: 15%; width: 200px; height: 200px;}
+  8.3%{top: 80%; left: 80%; width: 50px; height: 50px;}
+  12.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  16.6%{top: 25%; left: 75%; width: 50px; height: 50px;}
+  20.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  25%{top: 80%; left: 70%; width: 50px; height: 50px;}
+  29.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  33.3%{top: 20%; left: 75%; width: 50px; height: 50px;}
+  37.45%{top: 15%; left: 40%; width: 200px;height: 200px;}
+  41.6%{top: 80%; left: 80%; width: 50px; height: 50px;}
+  45.8%{top: 15%; left: 40%; width: 200px;height: 200px;}
+  50%{top: 80%; left: 90%; width: 50px; height: 50px;}
+  54.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  58.3%{top: 80%; left: 70%; width: 50px; height: 50px;}
+  62.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  66.6%{top: 20%;left: 85%; width: 50px; height: 50px;}
+  70.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  75%{top: 80%; left: 70%; width: 50px; height: 50px;}
+  79.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  83.3%{top: 70%; left: 90%; width: 50px; height: 50px;}
+  87.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  91.6%{top: 80%; left: 80%; width: 50px; height: 50px;}
+  95.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
+  100%{top: 25%; left: 85%; width: 50px;height: 50px;}
+ }
+
+/* Ejercicio 2 */
 
 @keyframes x { to { left:40%; } }
 @keyframes y { to { top:20.1%; } }
@@ -259,59 +330,33 @@ body {
 @keyframes x12 {from{left:60%;} to { left:50%; } }
 @keyframes y12 {from{top:20.2%;} to { top:20.3%; } }
 
-/* Animaciones */
-/*
-@keyframes frame1 {from{width:25px; height:25px; top:0%; left: 70%;}to {width:50px; height:50px; top:50%; left: 50%;}}
 
-@keyframes frame2 {from{width:50px; height:50px; top:50%; left: 50%;}to {width:50px; height:50px; top:20%; left: 80%;}}
+/* Ejercicio 3 */
 
-@keyframes frame3 {from{width:50px; height:50px; top:20%; left: 80%;}to {width:50px; height:50px; top:45%; left: 70%;}}
-
-@keyframes frame4 {from{width:50px; height:50px; top:45%; left: 70%;}to {width:50px; height:50px; top:20%; left: 55%;}}
-
-@keyframes frame5 {from{width:50px; height:50px; top:20%; left: 55%;}to {width:50px; height:50px; top:90%; left: 90%;}}
-
-@keyframes frame6 {from{width:50px; height:50px; top:90%; left: 90%;}to {width:50px; height:50px; top:50%; left: 50%;}}
-
-@keyframes frame7 {from{width:50px; height:50px; top:50%; left: 50%;}to {width:50px; height:50px; top:50%; left: 90%;}}
-*/  
-
-
-
-@keyframes move1 {
-  from { transform: translate3d(calc(1px * var(--p0x)), calc(1px * var(--p0y)), 0px); }
-  to { transform: translate3d(calc(1px * var(--q1x)), calc(1px * var(--q1y)), 0px); }
+@keyframes ejercicio3{
+  0%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  8.3%{background:var(--color-fondo);}
+  12.45%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  16.6%{background:var(--color-fondo);}
+  20.8%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  25%{background:var(--color-fondo);}
+  29.15%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  33.3%{background:var(--color-fondo);}
+  37.45%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  41.6%{background:var(--color-fondo);}
+  45.8%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  50%{background:var(--color-fondo);}
+  54.15%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  58.3%{background:var(--color-fondo);}
+  62.45%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  66.6%{background:var(--color-fondo);}
+  70.8%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  75%{background:var(--color-fondo);}
+  79.15%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  83.3%{background:var(--color-fondo);}
+  87.45%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  91.6%{background:var(--color-fondo);}
+  95.8%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
+  99.9%{background:var(--color-fondo);}
+  100%{background:radial-gradient(at 30% 30%,#0000,#000a) red;}
 }
-@keyframes move2 {
-  to { transform: translate3d(calc(1px * var(--q2x)), calc(1px * var(--q2y)), 0px); }
-}
-@keyframes move3 {
-  to { transform: translate3d(calc(1px * var(--p3x)), calc(1px * var(--p3y)), 0px); }
-}
-
- @keyframes move{
-  0%{top: 15%; width: 200px; height: 200px;}
-  8.3%{top: 80%; left: 80%; width: 50px; height: 50px;}
-  12.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  16.6%{top: 25%; left: 75%; width: 50px; height: 50px;}
-  20.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  25%{top: 80%; left: 70%; width: 50px; height: 50px;}
-  29.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  33.3%{top: 20%; left: 75%; width: 50px; height: 50px;}
-  37.45%{top: 15%; left: 40%; width: 200px;height: 200px;}
-  41.6%{top: 80%; left: 80%; width: 50px; height: 50px;}
-  45.8%{top: 15%; left: 40%; width: 200px;height: 200px;}
-  50%{top: 80%; left: 90%; width: 50px; height: 50px;}
-  54.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  58.3%{top: 80%; left: 70%; width: 50px; height: 50px;}
-  62.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  66.6%{top: 20%;left: 85%; width: 50px; height: 50px;}
-  70.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  75%{top: 80%; left: 70%; width: 50px; height: 50px;}
-  79.15%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  83.3%{top: 70%; left: 90%; width: 50px; height: 50px;}
-  87.45%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  91.6%{top: 80%; left: 80%; width: 50px; height: 50px;}
-  95.8%{top: 15%; left: 40%; width: 200px; height: 200px;}
-  100%{top: 25%; left: 85%; width: 50px;height: 50px;}
- }
