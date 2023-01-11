@@ -30,7 +30,7 @@
   /* Entre ambas anchures deben sumar 100% */
   --ancho-menu: 25%;
   --ancho-panel: 75%;
-
+  --espacio-boton: 2em;
   --espacio-menu: 5em;
 
 } 
@@ -75,8 +75,8 @@ body {
   align-items: center;
   justify-content: center;
 
-  width: 2em;
-  height: 2em;
+  width: var(--espacio-boton);
+  height: var(--espacio-boton);
 
   font-size: 24px;
   color: var(--color-iconos);
@@ -89,22 +89,22 @@ body {
 
 .boton_min{
   left: 110%;
-  top: 5%;
+  top: var(--espacio-boton);
 }
 
 .boton_play{
   left: 110%;
-  top: 10.5%;
+  top: calc(var(--espacio-boton) * 2);
 }
 
 .boton_pausa{
   left: 110%;
-  top: 16%;
+  top: calc(var(--espacio-boton) * 3);
 }
 
 .boton_reinicio{
   left: 110%;
-  top: 21.5%;
+  top: calc(var(--espacio-boton) * 4);
 }
 
 /************************* Menu lateral **************************/
@@ -114,7 +114,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80%;
+
+  padding: 1em;
   gap: var(--espacio-menu);
 }
 
@@ -161,8 +162,9 @@ body {
   border-radius: 15%;
   padding: 5%;
 
-  width: 75%;
-  height: 33%;
+  width: 150px;
+  height: 200px;
+
 
   background-color: var(--color-primario-muy-claro);
 }
